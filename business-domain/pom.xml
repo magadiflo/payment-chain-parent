@@ -11,6 +11,13 @@
 
     <artifactId>business-domain</artifactId>
 
+    <!--Por defecto es un jar, pero como será un módulo (submódulo) lo cambiamos a pom-->
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>ms-customers</module>
+    </modules>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
