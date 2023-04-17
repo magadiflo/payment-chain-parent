@@ -1,7 +1,7 @@
 package com.magadiflo.ms.customers.app.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
