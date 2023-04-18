@@ -31,6 +31,8 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     @Transactional
     public Customer save(Customer customer) {
+        // Relacionando el customer con cada customerProduct
+        customer.getCustomerProducts().forEach(customerProduct -> customerProduct.setCustomer(customer));
         return this.customerRepository.save(customer);
     }
 

@@ -14,7 +14,7 @@ public class CustomerProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "product_id", unique = true)
+    @Column(name = "product_id")
     private Long productId;
 
     @JsonIgnore //Es necesario para evitar la recursividad infinita.
