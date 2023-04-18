@@ -1,5 +1,6 @@
 package com.magadiflo.ms.customers.app.services.impl;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.magadiflo.ms.customers.app.entities.Customer;
 import com.magadiflo.ms.customers.app.repositories.ICustomerRepository;
 import com.magadiflo.ms.customers.app.services.ICustomerService;
@@ -8,12 +9,17 @@ import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -79,5 +85,22 @@ public class CustomerServiceImpl implements ICustomerService {
                     return Optional.of(true);
                 })
                 .orElseGet(Optional::empty);
+    }
+
+    private String getProductName(Long id) {
+        WebClient webClient = this.webClientBuilder.clientConnector(new ReactorClientHttpConnector(this.client))
+                .baseUrl("http://localhost:8083/api/v0/products")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8083/api/v0/products"))
+                .build();
+
+        JsonNode block = webClient.method(HttpMethod.GET)
+                .uri("/" + id)
+                .retrieve()
+                .bodyToMono(JsonNode.class)
+                .block();
+
+        String name = block.get("name").asText();
+        return name;
     }
 }
