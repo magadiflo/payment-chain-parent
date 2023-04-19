@@ -30,4 +30,7 @@ public class Customer {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "customer")
     private List<CustomerProduct> customerProducts = new ArrayList<>();
 
+    @Transient
+    private List<?> transactions;
+
 }

@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/business-domain/ms-customers/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business-domain/ms-products/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business-domain/ms-products/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business-domain/ms-transactions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business-domain/ms-transactions/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure-domain/src/main/java" charset="UTF-8" />

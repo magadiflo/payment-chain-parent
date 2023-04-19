@@ -96,6 +96,8 @@ public class CustomerServiceImpl implements ICustomerService {
                         String productName = this.getProductName(customerProduct.getProductId());
                         customerProduct.setProductName(productName);
                     });
+                    customerBD.setTransactions(this.getTransactions(customerBD.getIban()));
+
                     return Optional.of(customerBD);
                 })
                 .orElseGet(Optional::empty);
@@ -116,5 +118,19 @@ public class CustomerServiceImpl implements ICustomerService {
 
         String name = block.get("name").asText();
         return name;
+    }
+
+    private List<?> getTransactions(String iban) {
+        WebClient webClient = this.webClientBuilder.clientConnector(new ReactorClientHttpConnector(this.client))
+                .baseUrl("http://localhost:8082/api/v0/transactions")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+
+        return webClient.method(HttpMethod.GET)
+                .uri(uriBuilder -> uriBuilder.path("/transactions-of-client").queryParam("accountIban", iban).build())
+                .retrieve()
+                .bodyToFlux(Object.class)
+                .collectList()
+                .block();
     }
 }
