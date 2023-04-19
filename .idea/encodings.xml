@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/business-domain/ms-transactions/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/infrastructure-domain/ms-eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/infrastructure-domain/ms-eureka-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
