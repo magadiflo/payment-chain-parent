@@ -17,6 +17,9 @@ public class CustomerProduct {
     @Column(name = "product_id")
     private Long productId;
 
+    @Transient
+    private String productName;
+
     @JsonIgnore //Es necesario para evitar la recursividad infinita.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")

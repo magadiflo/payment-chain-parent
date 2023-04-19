@@ -46,4 +46,11 @@ public class CustomerResource {
                 .map(value -> ResponseEntity.noContent().build())
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping(path = "/full")
+    public ResponseEntity<Customer> getByCode(@RequestParam String code) {
+        return this.customerService.findByCode(code)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }

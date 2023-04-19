@@ -15,4 +15,6 @@ public interface ICustomerService {
     Optional<Customer> edit(Long id, Customer customer);
 
     Optional<Boolean> delete(Long id);
+
+    Optional<Customer> findByCode(String code);
 }

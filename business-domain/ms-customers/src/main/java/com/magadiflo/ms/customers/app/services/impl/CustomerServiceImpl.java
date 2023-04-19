@@ -87,7 +87,21 @@ public class CustomerServiceImpl implements ICustomerService {
                 .orElseGet(Optional::empty);
     }
 
-    private String getProductName(Long id) {
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Customer> findByCode(String code) {
+        return this.customerRepository.findByCode(code)
+                .map(customerBD -> {
+                    customerBD.getCustomerProducts().forEach(customerProduct -> {
+                        String productName = this.getProductName(customerProduct.getProductId());
+                        customerProduct.setProductName(productName);
+                    });
+                    return Optional.of(customerBD);
+                })
+                .orElseGet(Optional::empty);
+    }
+
+    private String getProductName(Long productId) {
         WebClient webClient = this.webClientBuilder.clientConnector(new ReactorClientHttpConnector(this.client))
                 .baseUrl("http://localhost:8083/api/v0/products")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -95,7 +109,7 @@ public class CustomerServiceImpl implements ICustomerService {
                 .build();
 
         JsonNode block = webClient.method(HttpMethod.GET)
-                .uri("/" + id)
+                .uri("/" + productId)
                 .retrieve()
                 .bodyToMono(JsonNode.class)
                 .block();
