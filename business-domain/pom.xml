@@ -18,6 +18,7 @@
     <modules>
         <module>ms-customers</module>
         <module>ms-products</module>
+        <module>ms-transactions</module>
     </modules>
 
     <properties>
