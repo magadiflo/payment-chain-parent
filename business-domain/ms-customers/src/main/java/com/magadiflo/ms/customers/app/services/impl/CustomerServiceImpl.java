@@ -105,9 +105,9 @@ public class CustomerServiceImpl implements ICustomerService {
 
     private String getProductName(Long productId) {
         WebClient webClient = this.webClientBuilder.clientConnector(new ReactorClientHttpConnector(this.client))
-                .baseUrl("http://localhost:8083/api/v0/products")
+                .baseUrl("http://ms-products/api/v0/products")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8083/api/v0/products"))
+                .defaultUriVariables(Collections.singletonMap("url", "http://ms-products/api/v0/products"))
                 .build();
 
         JsonNode block = webClient.method(HttpMethod.GET)
@@ -122,7 +122,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     private List<?> getTransactions(String iban) {
         WebClient webClient = this.webClientBuilder.clientConnector(new ReactorClientHttpConnector(this.client))
-                .baseUrl("http://localhost:8082/api/v0/transactions")
+                .baseUrl("http://ms-transactions/api/v0/transactions")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
 
