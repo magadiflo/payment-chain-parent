@@ -16,6 +16,7 @@
     <modules>
         <module>ms-eureka-server</module>
         <module>ms-admin-server</module>
+        <module>ms-config-server</module>
     </modules>
 
     <properties>
